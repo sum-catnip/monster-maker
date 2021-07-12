@@ -3,7 +3,7 @@
         {{> 'modules/monster-maker/templates/partials/sidebar.html' }}
     </div>
     <div class="npc-body">
-        {{> 'systems/pf2e/templates/actors/npc/partials/npc-header.html' }}
+        {{> 'modules/monster-maker/templates/partials/header.html' }}
 
         <nav class="sheet-tabs tabs" data-group="primary">
             <a class="item" data-tab="main">{{ localize 'PF2E.NPC.MainTab'}}</a>
@@ -12,10 +12,10 @@
             <a class="item" data-tab="notes">{{ localize 'PF2E.NPC.NotesTab'}}</a>
         </nav>
         <section class="sheet-body">
-            {{> 'modules/monster-maker/templates/partials/main.html' }}
-            {{> 'systems/pf2e/templates/actors/npc/partials/npc-inventory-tab.html' }}
-            {{> 'systems/pf2e/templates/actors/npc/partials/npc-spells-tab.html' }}
-            {{> 'systems/pf2e/templates/actors/npc/partials/npc-notes-tab.html' }}
+            {{> 'modules/monster-maker/templates/tabs/main.html' }}
+            {{> 'modules/monster-maker/templates/tabs/inventory.html' }}
+            {{> 'modules/monster-maker/templates/tabs/spells.html' }}
+            {{> 'modules/monster-maker/templates/tabs/notes.html' }}
         </section>
     </div>
 </form>

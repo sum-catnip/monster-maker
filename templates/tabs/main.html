@@ -1,24 +1,4 @@
 <div class="tab main" data-group="primary" data-tab="main">
-    {{#collapsible data 'info' 'Scaler Information'}}
-      <div class="mm-row">
-Source Gamemastery Guide pg. 57
-<br>
-<br>
-Extreme: The creature is world class in this statistic and can challenge almost any character. Most creatures have no extreme statistics or only one extreme statistic, although some creatures might have additional extreme statistics and weaker related statistics elsewhere (a common example being a creature trading accuracy for extreme damage). Examples from the Bestiary include the succubus’s Diplomacy and the lich’s spell DC.
-<br>
-<br>
-High: Extremely capable but not world class, the creature presents a challenge for most characters. Just about all creatures have at least one high value. Most combat-focused creatures have high AC and either a high attack bonus and high damage, or a merely moderate attack bonus but extreme damage. An ogre warrior’s attack bonus and a kobold scout’s Stealth are high values.
-<br>
-<br>
-Moderate: A middle-of-the road statistic can cover anything unremarkable about the creature. Use this one often.
-<br>
-<br>
-Low: The creature is actively bad at this. Choose these intentionally to represent the creature’s weak points. Most creatures should have at least one low statistic; an example is the goblin pyro’s Will save.
-<br>
-<br>
-Terrible: Some statistics can dip even lower than low, to terrible. This indicates a truly awful statistic that still isn’t game-breakingly bad. A spider’s Intelligence is terrible, as is a dero stalker’s Will save.
-      </div>
-    {{/collapsible}}
     {{#collapsible data 'senses' (localize 'PF2E.NPC.SensesLabel')}}
       <div class="mm-row">
         <div id="perception" data-attribute="perception" class="mm-row-label labelled-field">
@@ -117,7 +97,7 @@ Terrible: Some statistics can dip even lower than low, to terrible. This indicat
         <div class="section-body">
             <ol class="attacks-list item-list">
                 {{#each attacks as |attack index|}}
-                    {{> 'systems/pf2e/templates/actors/npc/partials/npc-attack.html' action=attack.attack traits=attack.traits actionId=index isEditable=../options.editable }}
+                    {{> 'modules/monster-maker/partials/attack.html' action=attack.attack traits=attack.traits actionId=index isEditable=../options.editable }}
                 {{/each}}
             </ol>
         </div>
@@ -137,7 +117,7 @@ Terrible: Some statistics can dip even lower than low, to terrible. This indicat
                 {{#each actions as |section sectionId|}}
                     {{#unless (eq sectionId 'passive')}}
                         {{#each section.actions as |action actionId|}}
-                            {{> 'systems/pf2e/templates/actors/npc/partials/npc-action.html' action=action isEditable=../../options.editable }}
+                            {{> 'modules/monster-maker/partials/action.html' action=action isEditable=../../options.editable }}
                         {{/each}}
                     {{/unless}}
                 {{/each}}
@@ -159,7 +139,7 @@ Terrible: Some statistics can dip even lower than low, to terrible. This indicat
                 {{#each actions as |section sectionId|}}
                     {{#if (eq sectionId 'passive')}}
                         {{#each section.actions as |action actionId|}}
-                            {{> 'systems/pf2e/templates/actors/npc/partials/npc-action.html' action=action isEditable=../../options.editable }}
+                            {{> 'modules/monster-maker/partials/action.html' action=action isEditable=../../options.editable }}
                         {{/each}}
                     {{/if}}
                 {{/each}}

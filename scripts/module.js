@@ -391,7 +391,14 @@ Hooks.once('init', async () => {
   // TODO: put in default options
   loadTemplates([
     'modules/monster-maker/templates/sheet.html',
-    'modules/monster-maker/templates/partials/main.html',
+    'modules/monster-maker/templates/tabs/main.html',
+    'modules/monster-maker/templates/tabs/inventory.html',
+    'modules/monster-maker/templates/tabs/notes.html',
+    'modules/monster-maker/templates/tabs/spells.html',
+    'modules/monster-maker/templates/partials/action.html',
+    'modules/monster-maker/templates/partials/attack.html',
+    'modules/monster-maker/templates/partials/header.html',
+    'modules/monster-maker/templates/partials/item.html',
     'modules/monster-maker/templates/partials/sidebar.html'
   ])
 
