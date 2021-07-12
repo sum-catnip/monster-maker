@@ -25,3 +25,12 @@ While im at it i also made the sections i introduced collapsible.
 
 ## Skills
 ![screenshot skills](scrots/skills.png)
+
+# TODO
+
+- make the skills window prettier with some css
+- lock / custom button so setting the level scales the scalers
+- add information text on how each slider scales
+- add more scalings
+- make whole sheet prettier
+- maybe a dark mode?
