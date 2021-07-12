@@ -30,6 +30,7 @@ While im at it i also made the sections i introduced collapsible.
 
 - make the skills window prettier with some css
 - lock / custom button so setting the level scales the scalers
+- localization
 - add information text on how each slider scales
 - add more scalings
 - make whole sheet prettier
