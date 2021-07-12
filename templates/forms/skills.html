@@ -1,0 +1,39 @@
+<form class="window flexcol" autocomplete="off" onsubmit="event.preventDefault();">
+    {{#collapsible @root.object.data 'skills-edit' (localize 'PF2E.SkillsLabel')}}
+      {{#each skills as |skill skillId|}}
+        <div class="mm-row">
+          <div class="skill labelled-field mm-row-label" id="{{skillId}}">
+              <label class="skill-name">{{skill.label}}</label>
+          </div>
+          <div class="mm-row-content">
+            <input name="{{skillId}}" type="number" data-dtype="Number" value="{{#if skill.visible}}{{skill.value}}{{else}}0{{/if}}" placeholder="0"/>
+            {{scaler @root.object.data 'skills' (fmt 'skills.{0}.value' skillId)}}
+            <div class="item-controls mm-skills-controls flexrow skill" data-skill="{{skillId}}">
+                <a class="item-control item-edit" title="{{localize 'PF2E.EditItemTitle'}}"><i class="fas fa-edit"></i></a>
+                <a class="item-delete delete" title="{{ localize 'PF2E.NPC.Remove' }}"><i class="fas fa-trash"></i></a>
+            </div>
+          </div>
+        </div>
+      {{/each}}
+      <div id="skill-selector" class="mm-row">
+        <div class="skill labelled-field mm-row-label" data-skill="{{skillId}}" id="{{skillId}}">
+          <select data-dtype="String">
+            {{#each missingSkills as |skill skillId|}}
+              <option value="{{skillId}}">{{skill.label}}</option>
+            {{/each}}
+          </select>
+        </div>
+        <div class="btn add-skill-button mm-row-content"><a><i class="fas fa-plus"></i> {{ localize 'PF2E.NPC.AddSkill' }}</a></div>
+      </div>
+
+      <div id="lore-skill-creator" class="mm-row">
+        <div class="skill labelled-field mm-row-label" data-skill="{{skillId}}" id="{{skillId}}">
+          <input data-dtype="String"/>
+        </div>
+        <div class="btn add-lore-button mm-row-content"><a><i class="fas fa-plus"></i> {{ localize 'PF2E.AddLoreSkill'}}</a></div>
+      </div>
+    {{/collapsible}}
+    <div class="footer">
+        <button type="submit" name="submit" value="1"><i class="far fa-save"></i>{{localize "PF2E.UpdateActorLabel"}}</button>
+    </div>
+</form>

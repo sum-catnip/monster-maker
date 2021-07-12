@@ -1,34 +1,24 @@
 {
-  "name": "module",
-  "title": "New Module",
-  "description": "",
+  "name": "monster-maker",
+  "title": "Monster Maker",
+  "description": "Craft your own monsters or npc without those pesky numbers!",
   "version": "This is auto replaced",
   "library": "false",
   "manifestPlusVersion": "1.0.0",
   "minimumCoreVersion": "0.7.9",
-  "compatibleCoreVersion": "0.7.9",
+  "compatibleCoreVersion": "0.8.8",
   "authors": [
     {
-      "name": "The League of Extraordinary FVTT Developers",
-      "url": "https://github.com/League-of-Foundry-Developers",
-      "discord": "discordID#0001"
+      "name": "catnip",
+      "url": "https://catnip.fyi",
+      "discord": "catnip#0420"
     }
   ],
-  "dependencies": [
-
-  ],
-  "conflicts": [
-    
-  ],
-  "esmodules": [
-    "/scripts/module.js"
-  ],
-  "scripts": [
-    "/scripts/lib/lib.js"
-  ],
-  "styles": [
-    "/styles/module.css"
-  ],
+  "dependencies": [ ],
+  "conflicts": [ ],
+  "esmodules": [ "/scripts/module.js" ],
+  "scripts": [ "/scripts/lib/lib.js" ],
+  "styles": [ "/styles/module.css" ],
   "languages": [
     {
       "lang": "en",
@@ -42,7 +32,7 @@
   "media": [
     {
       "type": "icon",
-      "url": "https://avatars2.githubusercontent.com/u/71292812?s=400&u=ccdb4eeb7abf551ca8f314e5a9bfd0479a4d3d41&v=4"
+      "url": "https://raw.githubusercontent.com/sum-catnip/monster-maker/master/icon.png"
     }
   ]
 }

@@ -1,0 +1,169 @@
+<div class="tab main" data-group="primary" data-tab="main">
+    {{#collapsible data 'info' 'Scaler Information'}}
+      <div class="mm-row">
+Source Gamemastery Guide pg. 57
+<br>
+<br>
+Extreme: The creature is world class in this statistic and can challenge almost any character. Most creatures have no extreme statistics or only one extreme statistic, although some creatures might have additional extreme statistics and weaker related statistics elsewhere (a common example being a creature trading accuracy for extreme damage). Examples from the Bestiary include the succubus’s Diplomacy and the lich’s spell DC.
+<br>
+<br>
+High: Extremely capable but not world class, the creature presents a challenge for most characters. Just about all creatures have at least one high value. Most combat-focused creatures have high AC and either a high attack bonus and high damage, or a merely moderate attack bonus but extreme damage. An ogre warrior’s attack bonus and a kobold scout’s Stealth are high values.
+<br>
+<br>
+Moderate: A middle-of-the road statistic can cover anything unremarkable about the creature. Use this one often.
+<br>
+<br>
+Low: The creature is actively bad at this. Choose these intentionally to represent the creature’s weak points. Most creatures should have at least one low statistic; an example is the goblin pyro’s Will save.
+<br>
+<br>
+Terrible: Some statistics can dip even lower than low, to terrible. This indicates a truly awful statistic that still isn’t game-breakingly bad. A spider’s Intelligence is terrible, as is a dero stalker’s Will save.
+      </div>
+    {{/collapsible}}
+    {{#collapsible data 'senses' (localize 'PF2E.NPC.SensesLabel')}}
+      <div class="mm-row">
+        <div id="perception" data-attribute="perception" class="mm-row-label labelled-field">
+          <label class="attribute-label rollable"><a>{{ localize "PF2E.PerceptionLabel" }}</a></label>
+          <input class="modifier{{#if (gte data.attributes.perception.value 0)}} not-negative{{/if}}{{#if (gt data.attributes.perception.totalModifier data.attributes.perception.base)}} positive-modifier{{/if}}{{#if (lt data.attributes.perception.totalModifier data.attributes.perception.base)}} negative-modifier{{/if}}" type="number" name="data.attributes.perception.value" value="{{ data.attributes.perception.value }}" data-base-property="data.attributes.perception.base" data-display-value="{{ data.attributes.perception.value }}" data-dtype="Number" placeholder="0"/>
+        </div>
+        <div class="mm-row-content"> {{scaler @root 'perception' 'attributes.perception.value'}} </div>
+      </div>
+      <div class="mm-row">
+        {{# if options.editable }}
+        <input name="data.traits.senses.value" type="text" value="{{ data.traits.senses.value }}" title="{{ data.traits.senses.value }}" data-dtype="String" placeholder="Special Senses"/>
+        {{else}}
+        <span>{{ data.traits.senses.value }}</span>
+        {{/if}}
+      </div>
+    {{/collapsible}}
+
+    {{#collapsible data 'ability-scores' (localize 'PF2E.AbilityScoresHeader')}}
+      {{#each data.abilities as |ability id|}}
+        <div class="mm-row">
+          <div class="labelled-field mm-row-label" data-attribute="{{id}}">
+              <label class="rollable "><a>{{ ability.localizedCode }}</a></label>
+              <input type="number" value="{{ability.mod}}" data-dtype="Number" placeholder="0"/>
+          </div>
+          <div class="mm-row-content">{{scaler @root 'abilities' (fmt 'abilities.{0}.mod' id)}}</div>
+        </div>
+      {{/each}}
+    {{/collapsible}}
+
+    {{#collapsible data 'saving-throws' 'Saving Throws'}}
+      {{#each data.saves as |save saveId|}}
+        <div class="mm-row">
+          <div class="labelled-field mm-row-label" data-save="{{saveId}}">
+            <label class="rollable" title="{{ save.breakdown }}"><a>{{ localize save.labelShort }}</a></label>
+            <input type="number" value="{{save.value}}" name="saves.{{saveId}}.value" data-dtype="Number" placeholder="0"/>
+          </div>
+          <div class="mm-row-content">{{scaler @root 'saving_throws' (fmt 'saves.{0}.value' saveId)}}</div>
+        </div>
+      {{/each}}
+    {{/collapsible}}
+
+    {{#collapsible data 'defenses' 'Defenses'}}
+      <div class="mm-row">
+        <div class="labelled-field mm-row-label">
+          <label><a>{{ localize 'PF2E.ArmorClassShortLabel' }}</a></label>
+          <input type="number" value="{{data.attributes.ac.value}}"
+                               data-dtype="Number" placeholder="0" readonly/>
+        </div>
+        <div class="mm-row-content"> {{scaler @root 'ac' 'attributes.ac.base'}} </div>
+      </div>
+      <div class="mm-row">
+        <div class="labelled-field mm-row-label">
+          <label><a> {{ localize 'PF2E.HitPointsShortLabel' }} </a></label>
+          <input class="{{#if (lt data.attributes.hp.max 10)}}lt10{{else if
+          (lt data.attributes.hp.max 100)}}lt100{{else}}lt1000{{/if}}"
+          type="number" value="{{ data.attributes.hp.max }}"
+          data-dtype="Number" placeholder="0" readonly/>
+        </div>
+        <div class="mm-row-content">{{scaler @root 'hp' 'attributes.hp.max'}}</div>
+      </div>
+    {{/collapsible}}
+
+    {{#collapsible data 'skills' (localize 'PF2E.SkillsLabel')}}
+      <div class="skills-list">
+        {{# if options.editable }}
+            <div class="skills-controls controls mm-skills-controls" for="data.skills">
+                <a class="skills-edit edit" data-options="skill" title="{{ localize 'PF2E.NPC.EditSkills' }}"><i class="fas fa-edit"></i></a>
+            </div>
+        {{/if}}
+        {{#each data.sortedSkills as |skill id|}}
+            {{#if skill.visible }}
+                <div class="skill-entry tag" data-skill="{{id}}">
+                    <a class="rollable">{{skill.label}} {{numberFormat skill.value decimals=0 sign=true}}</a>
+                    {{#if skill.variants}}
+                        {{#each skill.variants as |variant variantId|}}
+                            <a class="rollable variant" data-skill="{{id}}" data-options="{{variant.options}}">({{ variant.label }})</a>
+                        {{/each}}
+                    {{/if}}
+                </div>
+            {{/if}}
+        {{/each}}
+      </div>
+    {{/collapsible}}
+
+    <!-- ATTACKS -->
+    <div id="attacks" class="section-container">
+        <div class="section-header">
+            <h4>{{ localize 'PF2E.NPC.Attacks'}}</h4>
+                {{# if options.editable }}
+                <div class="attacks-controls controls">
+                    <a class="attack-add item-create" data-type="melee" data-action-type="melee"><i class="fas fa-plus"></i> {{localize 'PF2E.NPCAttackMelee'}}</a>
+                    <a class="attack-add item-create" data-type="melee" data-action-type="ranged"><i class="fas fa-plus"></i> {{localize 'PF2E.NPCAttackRanged'}}</a>
+                </div>
+                {{/if}}
+        </div>
+        <div class="section-body">
+            <ol class="attacks-list item-list">
+                {{#each attacks as |attack index|}}
+                    {{> 'systems/pf2e/templates/actors/npc/partials/npc-attack.html' action=attack.attack traits=attack.traits actionId=index isEditable=../options.editable }}
+                {{/each}}
+            </ol>
+        </div>
+    </div>
+    <!-- ACTIONS -->
+    <div id="actions" class="section-container">
+        <div class="section-header">
+            <h4>{{ localize 'PF2E.ActionActionsLabel'}}</h4>
+            {{# if options.editable }}
+                <div class="actions-controls controls">
+                    <a class="action-add item-create" title="{{localize 'PF2E.NPC.AddAction'}}" data-type="action" data-action-type="action"><i class="fas fa-plus"></i></a>
+                </div>
+            {{/if}}
+        </div>
+        <div class="section-body">
+            <ol class="actions-list item-list">
+                {{#each actions as |section sectionId|}}
+                    {{#unless (eq sectionId 'passive')}}
+                        {{#each section.actions as |action actionId|}}
+                            {{> 'systems/pf2e/templates/actors/npc/partials/npc-action.html' action=action isEditable=../../options.editable }}
+                        {{/each}}
+                    {{/unless}}
+                {{/each}}
+            </ol>
+        </div>
+    </div>
+    <!-- PASSIVES -->
+    <div id="passives" class="section-container">
+        <div class="section-header">
+            <h4>{{ localize 'PF2E.NPC.PassivesLabel' }}</h4>
+            {{# if options.editable }}
+                <div class="actions-controls controls">
+                    <a class="action-add item-create" title="{{ localize 'PF2E.NPC.AddPassive' }}" data-type="action" data-action-type="passive"><i class="fas fa-plus"></i></a>
+                </div>
+            {{/if}}
+        </div>
+        <div class="section-body">
+            <ol class="actions-list item-list">
+                {{#each actions as |section sectionId|}}
+                    {{#if (eq sectionId 'passive')}}
+                        {{#each section.actions as |action actionId|}}
+                            {{> 'systems/pf2e/templates/actors/npc/partials/npc-action.html' action=action isEditable=../../options.editable }}
+                        {{/each}}
+                    {{/if}}
+                {{/each}}
+            </ol>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,94 @@
+.scaler {
+  border: 1px solid transparent;
+  margin: 1px;
+  width: auto !important;
+  line-height: normal !important;
+}
+
+.scaler-active {
+  border: 1px solid #ff6400;
+  box-shadow: 0 0 2px red;
+}
+
+.skill {
+  display: flex !important;
+  column-gap: normal !important;
+}
+
+.skill-name {
+  line-height: 25px;
+}
+
+ /* Style the button that is used to open and close the collapsible content */
+.mm-collapsible {
+  background-color: var(--primary);
+  color: #f5efe0;
+  width: 100%;
+  border: none;
+  border-radius: 0px !important;
+  text-align: left;
+  outline: none;
+  font-size: 15px;
+  font-weight: 600;
+  margin: 0px;
+}
+
+/* Style the collapsible content. Note: hidden by default */
+.mm-section {
+  background-color: white;
+}
+
+.mm-collapsible:after {
+  content: '\f067'; /* Unicode character for "plus" sign (+) */
+  font-size: 13px;
+  font-weight: 900;
+  font-family: "Font Awesome 5 Free";
+  color: white;
+  float: right;
+  margin-left: 5px;
+}
+
+.mm-collapsible.active:after {
+  content: "\f068"; /* Unicode character for "minus" sign (-) */
+}
+
+.mm-row {
+  display: flex;
+  justify-content: space-between;
+  flex-direction: row;
+  padding: 3px 10px;
+}
+
+.mm-row * {
+  border-radius: 0px !important;
+}
+
+.mm-row-content, .mm-row-label {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+
+.mm-row input[type=Number] {
+  width: 30px !important;
+  margin-left: 5px !important;
+  text-align: right;
+  flex: none !important;
+}
+
+.skills-list {
+  padding: 5px;
+}
+
+.mm-skills-controls {
+  flex-wrap: nowrap;
+}
+
+.mm-skills-edit .window-content {
+  padding: 0px !important;
+}
+
+#npc-skills-selector {
+  width: auto !important;
+  height: auto;
+}
